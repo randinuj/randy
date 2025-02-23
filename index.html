@@ -41,6 +41,7 @@
             flex-direction: column;
             justify-content: center;
             height: 100vh;
+            overflow: hidden;
         }
 
         /* Main Container */
@@ -120,6 +121,22 @@
             0% { transform: translateY(0); }
             100% { transform: translateY(100vh); }
         }
+
+        /* Heart Animation */
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: url('https://image.shutterstock.com/image-vector/heart-icon-260nw-732360041.jpg') no-repeat center center;
+            background-size: cover;
+            opacity: 0;
+            animation: fall 5s forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -198,6 +215,16 @@
                 confetti.style.animationDuration = Math.random() * 2 + 2 + "s";
                 document.body.appendChild(confetti);
             }
+            
+            // Heart rain effect
+            let heartCount = 30; // Number of hearts to fall
+            for (let i = 0; i < heartCount; i++) {
+                let heart = document.createElement("div");
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw"; // Random horizontal position
+                heart.style.animationDuration = Math.random() * 2 + 3 + "s"; // Random fall duration
+                document.body.appendChild(heart);
+            }
         });
 
         // Share button event
@@ -211,4 +238,4 @@
     </script>
 
 </body>
-    </html>
+</html>
