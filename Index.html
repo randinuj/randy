@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me? 💜</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ff9ff3, #c56cf0);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .yes-btn {
+            background: #ff6b81;
+            color: white;
+        }
+        .no-btn {
+            background: #6c5ce7;
+            color: white;
+            position: relative;
+        }
+        .yes-btn:hover, .no-btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img id="cute-img" src="https://i.imgur.com/1b1JgEI.jpg" alt="Cute Love Image">
+        <h1 id="question">Do you love me? 💜</h1>
+        <div class="btn-group">
+            <button class="yes-btn" onclick="sayYes()">Yes 💕</button>
+            <button class="no-btn" onclick="sayNo()">No 💔</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            "Why not? 🥺",
+            "Are you sure? 🥹",
+            "Just for a second? 😖",
+            "I’m gonna cry now 😭",
+            "I'll be sad forever 💔",
+            "Say you love me or I'll haunt your dreams tonight 😈💕"
+        ];
+
+        const images = [
+            "https://i.imgur.com/1b1JgEI.jpg",
+            "https://i.imgur.com/4NHLB6v.jpg",
+            "https://i.imgur.com/Y0dtQ6m.jpg",
+            "https://i.imgur.com/qT0ksGM.jpg",
+            "https://i.imgur.com/zqxP0mX.jpg",
+            "https://i.imgur.com/MXOTRGW.jpg"
+        ];
+
+        let index = 0;
+        function sayNo() {
+            if (index < questions.length) {
+                document.getElementById("question").innerText = questions[index];
+                document.getElementById("cute-img").src = images[index];
+                index++;
+            } else {
+                document.getElementById("question").innerText = "SAY YOU LOVE ME NOW! 💀💕";
+            }
+        }
+
+        function sayYes() {
+            document.body.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; color: white;">
+                    <img src="https://i.imgur.com/6z27bka.jpg" alt="Happy Love" style="max-width: 100%; border-radius: 10px;">
+                    <h1>She said YES!! 💖</h1>
+                    <h2>I LOVE YOUUU!! 🥰💞</h2>
+                </div>
+            `;
+        }
+    </script>
+
+</body>
+</html>
