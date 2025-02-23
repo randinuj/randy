@@ -5,109 +5,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Do You Love Me? 💜</title>
     <style>
+        /* Preload Images */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            background: url('https://www.shutterstock.com/image-vector/meme-flork-love-design-valentines-600nw-2245312199.jpg'),
+                        url('https://www.calendarclub.ca/cdn/shop/files/A12E395E-F440-43C9-9442-86DD87781246_a5d9936d-8660-4db9-8773-e5de27cd1d58.jpg'),
+                        url('https://media.tenor.com/sIf1VJDSfSkAAAAM/cat-woof.gif'),
+                        url('https://source.boomplaymusic.com/group10/M00/09/13/988f359f14c5425ebb162bd166990725H3000W3000_464_464.webp'),
+                        url('https://media.tenor.com/5Um_9EbYVDIAAAAe/cat.png'),
+                        url('https://www.podoutdoor.com/wp-content/uploads/2017/04/cat_with_knife.jpg');
+            visibility: hidden;
+        }
+
+        /* General Styling */
         body {
             font-family: 'Arial', sans-serif;
-            text-align: center;
-            background: linear-gradient(135deg, #ff9ff3, #c56cf0);
+            background-color: #b14ebf; /* Pinkish-purple */
             color: white;
+            text-align: center;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
         }
+
+        /* Main Container */
         .container {
+            position: relative;
             max-width: 400px;
             margin: auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        img {
-            max-width: 100%;
+
+        /* Image */
+        #cute-img {
+            width: 150px;
             height: auto;
-            border-radius: 10px;
+            transition: transform 0.5s ease-in-out;
         }
+
         h1 {
             font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
+            margin: 20px 0;
             transition: 0.3s;
         }
-        .yes-btn {
-            background: #ff6b81;
+
+        /* Buttons */
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        #yes {
+            background-color: #ff69b4; /* Pink */
             color: white;
         }
-        .no-btn {
-            background: #6c5ce7;
+
+        #yes:hover {
+            background-color: #ff85c2;
+            transform: scale(1.1);
+        }
+
+        #no {
+            background-color: #ff3b6f; /* Darker pink */
             color: white;
             position: relative;
         }
-        .yes-btn:hover, .no-btn:hover {
-            opacity: 0.8;
+
+        #no:hover {
+            background-color: #ff5b89;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            font-size: 12px;
+            color: #ffd5f8;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: pink;
+            border-radius: 50%;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <img id="cute-img" src="https://i.imgur.com/1b1JgEI.jpg" alt="Cute Love Image">
+        <img id="cute-img" src="https://www.shutterstock.com/image-vector/meme-flork-love-design-valentines-600nw-2245312199.jpg" alt="Cute Image">
         <h1 id="question">Do you love me? 💜</h1>
-        <div class="btn-group">
-            <button class="yes-btn" onclick="sayYes()">Yes 💕</button>
-            <button class="no-btn" onclick="sayNo()">No 💔</button>
+        <div class="buttons">
+            <button id="yes">Yes 💖</button>
+            <button id="no">No 😢</button>
         </div>
     </div>
 
+    <footer>
+        <p>Dedicated to my <span id="binary"></span> 💜</p>
+    </footer>
+
     <script>
-        const questions = [
-            "Why not? 🥺",
-            "Are you sure? 🥹",
-            "Just for a second? 😖",
-            "I’m gonna cry now 😭",
-            "I'll be sad forever 💔",
-            "Say you love me or I'll haunt your dreams tonight 😈💕"
+        let questions = [
+            "Why not? 😢",
+            "Please? Just for a second 💕",
+            "Even a tiny bit? 😳",
+            "I promise I'm cute 🥺",
+            "Say yes or I'll haunt your dreams 👻 (but cutely)",
+            "Last chance! 🙈"
         ];
 
-        const images = [
-            "https://i.imgur.com/1b1JgEI.jpg",
-            "https://i.imgur.com/4NHLB6v.jpg",
-            "https://i.imgur.com/Y0dtQ6m.jpg",
-            "https://i.imgur.com/qT0ksGM.jpg",
-            "https://i.imgur.com/zqxP0mX.jpg",
-            "https://i.imgur.com/MXOTRGW.jpg"
+        let images = [
+            "https://www.shutterstock.com/image-vector/meme-flork-love-design-valentines-600nw-2245312199.jpg",
+            "https://www.calendarclub.ca/cdn/shop/files/A12E395E-F440-43C9-9442-86DD87781246_a5d9936d-8660-4db9-8773-e5de27cd1d58.jpg",
+            "https://media.tenor.com/sIf1VJDSfSkAAAAM/cat-woof.gif",
+            "https://source.boomplaymusic.com/group10/M00/09/13/988f359f14c5425ebb162bd166990725H3000W3000_464_464.webp",
+            "https://media.tenor.com/5Um_9EbYVDIAAAAe/cat.png",
+            "https://www.podoutdoor.com/wp-content/uploads/2017/04/cat_with_knife.jpg"
         ];
 
         let index = 0;
-        function sayNo() {
-            if (index < questions.length) {
-                document.getElementById("question").innerText = questions[index];
-                document.getElementById("cute-img").src = images[index];
-                index++;
-            } else {
-                document.getElementById("question").innerText = "SAY YOU LOVE ME NOW! 💀💕";
-            }
-        }
 
-        function sayYes() {
+        // "No" button event
+        document.getElementById("no").addEventListener("click", function () {
+            if (index < questions.length - 1) {
+                document.getElementById("question").innerText = questions[index];
+                document.getElementById("cute-img").src = images[index % images.length];
+                index++;
+
+                // Move the "No" button slightly
+                this.style.transform = `translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
+            } else {
+                document.getElementById("question").innerText = "Say you love me or I'll appear in your dreams tonight 😘";
+                document.getElementById("cute-img").src = images[5]; // Last image (cat with knife)
+                this.style.display = "none"; // Hide No button
+            }
+        });
+
+        // "Yes" button event
+        document.getElementById("yes").addEventListener("click", function () {
             document.body.innerHTML = `
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; color: white;">
-                    <img src="https://i.imgur.com/6z27bka.jpg" alt="Happy Love" style="max-width: 100%; border-radius: 10px;">
-                    <h1>She said YES!! 💖</h1>
-                    <h2>I LOVE YOUUU!! 🥰💞</h2>
+                <div class="container">
+                    <h1>She said yes!! I love youuu 💜</h1>
+                    <img src="https://www.shutterstock.com/image-vector/meme-flork-love-design-valentines-600nw-2245312199.jpg" width="150">
                 </div>
             `;
+
+            // 🎉 Confetti effect
+            let confettiCount = 50;
+            for (let i = 0; i < confettiCount; i++) {
+                let confetti = document.createElement("div");
+                confetti.className = "confetti";
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.animationDuration = Math.random() * 2 + 2 + "s";
+                document.body.appendChild(confetti);
+            }
+        });
+
+        // Convert "Himansi" to binary and display it in the footer
+        function textToBinary(text) {
+            return text.split('').map(char => char.charCodeAt(0).toString(2)).join(' ');
         }
+
+        document.getElementById("binary").innerText = textToBinary("Himansi");
     </script>
 
 </body>
