@@ -24,12 +24,12 @@
 
         /* General Styling */
         @font-face {
-    font-family: 'Product Sans';
-    src: url('ProductSans-Regular.woff2') format('woff2'),
-         url('ProductSans-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+            font-family: 'Product Sans';
+            src: url('ProductSans-Regular.woff2') format('woff2'),
+                 url('ProductSans-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
         body {
             font-family: 'Product Sans', sans-serif;
             background-color: #b14ebf; /* Pinkish-purple */
@@ -132,8 +132,9 @@
             <button id="no">No 😢</button>
         </div>
     </div>
-    <button id="shareButton" style="font-family: 'Product Sans', sans-serif; padding: 10px 20px; background-color: pink; border: none; border-radius: 5px; cursor: pointer; color: white; display: none;">
-    Send this to your girlfriend
+    
+    <button id="shareButton" style="font-family: 'Product Sans', sans-serif; padding: 10px 20px; background-color: pink; border: none; border-radius: 5px; cursor: pointer; color: white; display: none;" onclick="shareToGirlfriend()">
+        Send this to your girlfriend
     </button>
 
     <footer>
@@ -195,30 +196,18 @@
                 confetti.style.animationDuration = Math.random() * 2 + 2 + "s";
                 document.body.appendChild(confetti);
             }
+
+            // Show the share button
+            document.getElementById('shareButton').style.display = 'block';
         });
 
-        // Convert "Himansi" to binary and display it in the footer
-        function textToBinary(text) {
-            return text.split('').map(char => char.charCodeAt(0).toString(2)).join(' ');
-        }
-
-        document.getElementById("binary").innerText = textToBinary("Himansi");
-    function onYesClick() {
-    // Display the message
-    document.getElementById('response').innerHTML = "She said yes!! I love youuu!";
-    
-    // Show the share button
-    document.getElementById('shareButton').style.display = 'block';
-}
-
-function shareToGirlfriend() {
-    const shareText = "Hey babe, check this cool page out!";
-    const shareUrl = window.location.href; // Use the current page URL
-    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + shareUrl)}`;
-    
-    window.open(whatsappUrl, '_blank');
+        function shareToGirlfriend() {
+            const shareText = "Hey babe, check this cool page out!";
+            const shareUrl = window.location.href; // Use the current page URL
+            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + shareUrl)}`;
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 
 </body>
-</html>
+    </html>
