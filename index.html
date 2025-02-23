@@ -17,7 +17,7 @@
                         url('https://media.tenor.com/sIf1VJDSfSkAAAAM/cat-woof.gif'),
                         url('https://source.boomplaymusic.com/group10/M00/09/13/988f359f14c5425ebb162bd166990725H3000W3000_464_464.webp'),
                         url('https://media.tenor.com/5Um_9EbYVDIAAAAe/cat.png'),
-                        url('https://www.podoutdoor.com/wp-content/uploads/2017/04/cat_with_knife.jpg');
+                        url('https://www.podoutdoor.com/wp-content/uploads/2017/04/cat_with_knife.jpg'),
                         url('https://c.tenor.com/0y292JDqsNsAAAAC/tenor.gif');
             visibility: hidden;
         }
@@ -132,8 +132,7 @@
             <button id="no">No 😢</button>
         </div>
     </div>
-    
-    <button id="shareButton" style="font-family: 'Product Sans', sans-serif; padding: 10px 20px; background-color: pink; border: none; border-radius: 5px; cursor: pointer; color: white; display: none;" onclick="shareToGirlfriend()">
+    <button id="shareButton" style="font-family: 'Product Sans', sans-serif; padding: 10px 20px; background-color: pink; border: none; border-radius: 5px; cursor: pointer; color: white; display: none;">
         Send this to your girlfriend
     </button>
 
@@ -187,6 +186,9 @@
                 </div>
             `;
 
+            // Show the share button
+            document.getElementById('shareButton').style.display = 'block';
+
             // 🎉 Confetti effect
             let confettiCount = 50;
             for (let i = 0; i < confettiCount; i++) {
@@ -196,18 +198,17 @@
                 confetti.style.animationDuration = Math.random() * 2 + 2 + "s";
                 document.body.appendChild(confetti);
             }
-
-            // Show the share button
-            document.getElementById('shareButton').style.display = 'block';
         });
 
-        function shareToGirlfriend() {
+        // Share button event
+        document.getElementById("shareButton").addEventListener("click", function () {
             const shareText = "Hey babe, check this cool page out!";
             const shareUrl = window.location.href; // Use the current page URL
             const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + shareUrl)}`;
+            
             window.open(whatsappUrl, '_blank');
-        }
+        });
     </script>
 
 </body>
-    </html>
+        </html>
